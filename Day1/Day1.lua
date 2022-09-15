@@ -2021,3 +2021,28 @@ for i = 2,2000 do
 end
 
 print(solution)
+
+
+local done = false
+local it = 2
+local rollingWindow = {}
+
+while not done do 
+    if not numbersArray[it+1] then 
+      done = true
+    else 
+      table.insert(rollingWindow, numbersArray[it-1]+numbersArray[it]+numbersArray[it+1])
+    end
+    it = it +1
+end
+
+print(rollingWindow)
+
+local count = 0
+for i = 1, 1997 do
+    if rollingWindow[i] < rollingWindow[i+1] then
+      count = count + 1
+    end
+end
+
+print(count)
