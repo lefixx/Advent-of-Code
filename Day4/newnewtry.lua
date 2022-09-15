@@ -703,6 +703,12 @@ function findFirstWin(cards)
     end
 end
 
+function removeCard(cards,index)  --returns card stack without the one card
+    table.remove(cards,index)
+    return cards
+end
+
+
 --card 74 wins first at round 26
 --card 93 wins last  at round 88
 
@@ -728,6 +734,6 @@ function score(x,y) -- returns the score of a bingo card, needs to know what rou
     return sum*callouts[#callouts]
 end
 
-print(findFirstWin(bingoCards))
+
 
 print("program end")
