@@ -767,7 +767,9 @@ end
 
 
 --card 74 wins first at round 26
---card 93 wins last  at round 88
+-- score(bingoCards[74],26)
+--card 66 wins last  at round 90
+-- score(bingoCards[66],90)
 
 -- LASTCARD = {
 --     {85,64,44,39,57},
