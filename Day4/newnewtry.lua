@@ -609,7 +609,7 @@ for i in string.gmatch(RAWBINGOCARDS,"%d+") do
 end
 
 
-local bingoCardLines = {}
+bingoCardLines = {}
 for i = 1,500 do
     bingoCardLines[i] = {}
     for j = 1,5 do
@@ -619,7 +619,7 @@ end
 
 
 
-local bingoCards = {}
+bingoCards = {}
 for i = 1, 100 do
     bingoCards[i] = {}
     for j = 1,5 do
@@ -632,12 +632,12 @@ end
 
 
 
-function callouts(round)
-    local output = {}
-    for i = 1,round do
-        output[i] = CALLOUTS[i]
+function callouts(bar)
+    local foo = {}
+    for asdf = 1,bar do
+        foo[asdf] = CALLOUTS[asdf]
     end
-    return output
+    return foo
 end
 
 function checkNumbersForBingo(numbers, round)
@@ -713,38 +713,29 @@ function removeCard(cards,index)  --returns card stack with nil at index
     return foo
 end
 
-function score(x,y) -- returns the score of a bingo card, needs to know what round
-    print("here")
-    local card = x
-    local callouts = callouts(y)
+function score(card,round) -- returns the score of a bingo card, needs to know what round
+    print("SCORING")
+
+    local calledNumbers = callouts(round)
+    local sum = 0
+
     for i = 1,5 do
         for j = 1,5 do
-            for _,v in ipairs(callouts) do
+            local numberHasBeenCalled = false
+            for _,v in ipairs(calledNumbers) do
                 if card[i][j] == v then 
-                    card [i][j] = 0
+                    numberHasBeenCalled = true
                 end
+            end
+            if not numberHasBeenCalled then 
+                sum = sum + card[i][j]
             end
         end
     end
-    local sum = 0
-    for i = 1,5 do
-        for j = 1,5 do
-            sum = sum + card[i][j]
-        end
-    end
-    return sum*callouts[#callouts]
+    return sum*calledNumbers[#calledNumbers]
 end
 
-
-
-
-
-print("jere")
-
-
-
-
-
+print(score(bingoCards[1],50))
 
 
 
