@@ -640,7 +640,6 @@ function callouts(round)
     return output
 end
 
-
 function checkNumbersForBingo(numbers, round)
     local progress = 0
     local callouts = callouts(round)
@@ -675,7 +674,6 @@ function checkCardForBingo(card, round)
     return bingo
 end
 
-
 function getWins(cards,round) --return all indexes of winning cards for the round provided
 
     local callouts = callouts(round)
@@ -688,6 +686,18 @@ function getWins(cards,round) --return all indexes of winning cards for the roun
     return winners
 end
 
+function getAllWins(cards) --returns a table with a line for every round with all the winners of that round
+    local allwins = {}
+    for i = 1,100 do
+        allwins[i] = getWins(cards,i)
+    end
+    return allwins
+end
 
+--card 74 wins first at round 26
+--card 66 wins last  at round 91 (or 90)
+
+
+getAllWins(bingoCards)
 
 print("program end")
