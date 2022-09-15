@@ -640,8 +640,6 @@ function callouts(round)
     return output
 end
 
-callouts(30)
-print("here")
 
 function checkNumbersForBingo(numbers, round)
     local progress = 0
@@ -677,7 +675,8 @@ function checkCardForBingo(card, round)
     return bingo
 end
 
-function getWins(cards,round)
+
+function getWins(cards,round) --return all indexes of winning cards for the round provided
 
     local callouts = callouts(round)
     local winners = {}
@@ -687,11 +686,8 @@ function getWins(cards,round)
         end
     end
     return winners
-
 end
 
 
-
-getWins(bingoCards, 10)
 
 print("program end")
