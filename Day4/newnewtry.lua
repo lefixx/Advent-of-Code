@@ -633,13 +633,15 @@ end
 
 
 function callouts(round)
-
     local output = {}
     for i = 1,round do
-        output[i] = numbers[i]
+        output[i] = CALLOUTS[i]
     end
     return output
 end
+
+callouts(30)
+print("here")
 
 function checkNumbersForBingo(numbers, round)
     local progress = 0
