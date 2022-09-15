@@ -693,24 +693,25 @@ function getAllWins(cards) --returns a table with a line for every round with al
     return allwins
 end
 
-function findFirstWin(cards)
+function findFirstWin(cards) -- returns index of winning card
     local foo = getAllWins(cards)
     for k,v in pairs(foo) do
         if v[1] then
-            print("here")
+            print(k)
             return v[1]
         end
     end
 end
 
-function removeCard(cards,index)  --returns card stack without the one card
-    table.remove(cards,index)
-    return cards
+function removeCard(cards,index)  --returns card stack with nil at index
+    local foo = {}
+    for i,v in pairs(cards) do
+        if i ~= index then
+            foo[i] = cards[i]
+        end
+    end
+    return foo
 end
-
-
---card 74 wins first at round 26
---card 93 wins last  at round 88
 
 function score(x,y) -- returns the score of a bingo card, needs to know what round
     print("here")
@@ -735,5 +736,57 @@ function score(x,y) -- returns the score of a bingo card, needs to know what rou
 end
 
 
+
+
+
+print("jere")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function foo(cards)
+    local bar
+    for i = 1,99 do
+        bar = findFirstWin(cards)
+        removeCard(cards,bar)
+    end
+    print(bar)
+end
+
+
+--card 74 wins first at round 26
+--card 93 wins last  at round 88
+
+-- LASTCARD = {
+--     {85,64,44,39,57},
+--     {90,30,15,35,54},
+--     {78,89,55,99,12},
+--     {80,96,20,50,45},
+--     {56,10,71,59,17}
+-- }
+
+
+-- foo(bingoCards)
 
 print("program end")
