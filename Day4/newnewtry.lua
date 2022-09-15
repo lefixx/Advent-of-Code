@@ -1,4 +1,4 @@
-BINGOCARDS  = [["14 86 50 89 49
+RAWBINGOCARDS  = [["14 86 50 89 49
 10 85 33 46 87
 82 91 54 13 90
 63 88 75 99 79
@@ -603,26 +603,31 @@ CALLOUTS = "13,79,74,35,76,12,43,71,87,72,23,91,31,67,58,61,96,16,81,92,41,6,32,
 
 SAMPLECARD = { { 13, 86, 50, 89, 49 }, { 79, 85, 33, 46, 87 }, { 74, 91, 54, 13, 90 }, { 35, 88, 75, 99, 79 }, { 76, 31, 4, 0, 71 } }
 
-numbers= {}
-for i in string.gmatch(CALLOUTS,"%d+") do
-    table.insert(numbers,i+0)
+bingonumbers= {}
+for i in string.gmatch(RAWBINGOCARDS,"%d+") do
+    table.insert(bingonumbers,i+0)
 end
+
 
 local bingoCardLines = {}
 for i = 1,500 do
     bingoCardLines[i] = {}
     for j = 1,5 do
-        bingoCardLines[i][j] = numbers[j+(i*5-5)]
+        bingoCardLines[i][j] = bingonumbers[j+(i*5-5)]
     end
 end
+
+
 
 local bingoCards = {}
 for i = 1, 100 do
     bingoCards[i] = {}
     for j = 1,5 do
         bingoCards[i][j] = bingoCardLines[j+(i*5-5)]
+
     end
 end
+
 -- calculated bingoCards and numbers
 
 
