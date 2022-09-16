@@ -1,4 +1,6 @@
---[[
+instructions =[[forward 3
+down 9
+forward 5
 up 1
 forward 2
 down 1
@@ -1003,9 +1005,7 @@ instructionsArray={}
 
 for i = 1,1000 do
     --find the length for the first number
-    length = string.find(instructions, [[
-
-]]) -- finds the first enter character --NO INDENT
+    length = string.find(instructions, "\n") -- finds the first enter character --NO INDENT
     instructionsArray[i] = instructions:sub(1,length-1) --remove the first length characters and the enter
     -- print(i.." "..instructionsArray[i])
     instructions = instructions:sub(length+1) --removes the first line
