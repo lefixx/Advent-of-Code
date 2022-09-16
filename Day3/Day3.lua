@@ -1,4 +1,5 @@
-input = [[101000001100
+input = [[
+101000001100
 011111100111
 111100001110
 110000011001
@@ -1054,8 +1055,8 @@ end
 gamma = tonumber(gamma,2)  --covert to decimal
 epsilon = tonumber(epsilon,2)
 
--- print(gamma*epsilon)
--- print"1092896"
+print(gamma*epsilon)
+print"1092896"
 
 -- PART 2
 
@@ -1067,29 +1068,53 @@ function extractDigitFromInput(input, d) --outputs an array of single digits in 
     return newArray
 end
 
-function findRating(array,type) --input array is the binary codes. type is "oxygen" or "CO2"
-    local targetDigit = 1
-    local list = extractDigitFromInput(arrayFromInput(input,1000),targetDigit)
-    local MostCommonDigit = mostCommon(list)
-    if type == "oxygen" then if MostCommonDigit == 2 then MostCommonDigit = 1 end end
-    if type == "CO2" then if MostCommonDigit == 2 then MostCommonDigit = 0 end end
-
-    if type == "oxygen" then
-        list = without(list,MostCommonDigit)
-    elseif type == "CO2" then
-        --todo
+function findRatings(array)
+    
+    local listToKeep = {} --list with full numbers, we will remove numbers from this until it is the oxygen Rating
+    local listToKeep2 = {} ----list with full numbers, we will remove numbers from this until it is the CO2 Rating
+    for i,v in ipairs(array) do
+        listToKeep[i] = array[i]
+        listToKeep2[i] = array[i]
     end
 
+   
+    local oxygenRating = ""
+    local CO2Rating = ""
+
+    for i = 1,12 do 
+
+        local singleBitList = extractDigitFromInput(array,i)
+        
+            
+        local mostCommonDigit = mostCommon(singleBitList)
 
 
-    if #list == 1 then --check if list has only one thing
-        print(list)
-        return list[1]
-    else
-        print(#list)
-        targetDigit = targetDigit + 1
-        if targetDigit == 13 then targetDigit = 1 end
+        if mostCommonDigit == 0 then    --yes this takes into account if they are the same (then most common digit == 2)
+            oxygenRating = oxygenRating.."0"
+            CO2Rating    = CO2Rating.."1"        
+        else
+            oxygenRating = oxygenRating.."1"
+            CO2Rating    = CO2Rating.."0"
+        end
+    
+        
+        for i,v in ipairs(singleBitList) do
+            if v+0 ~= mostCommonDigit then
+                -- table.remove(listToKeep,i)
+                listToKeep[i] = nil
+            else
+                -- table.remove(listToKeep2,i)
+                listToKeep2[i] = nil
+            end
+        end 
+        
+
     end
+    
+    print("oxygenRating", tonumber(oxygenRating,2), oxygenRating)
+    print("CO2Rating",tonumber(CO2Rating,2), CO2Rating)
+    print(tonumber(oxygenRating,2)*tonumber(CO2Rating,2))
+    
 end
 
 
@@ -1114,16 +1139,4 @@ function mostCommon(array) --input is an array of ones and zeroes returns 0,1 or
 end
 
 
-function without(array, number) --return an array with the strings that start with that number missing
-    local newArray = {}
-    local it = 1
-    for i,v in ipairs(array) do
-        if not (string.sub(v,1,1) == number) then
-            newArray[it] = v
-            it = it + 1
-        end
-    end
-    return newArray
-end
-
-print(findRating(input, "oxygen"))
+print(findRatings(dataArray))
