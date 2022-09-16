@@ -1025,3 +1025,20 @@ for i = 1,1000 do
 end
 
 print(horPos*depth)
+
+aim = 0
+horPos = 0
+depth = 0
+
+for i = 1,1000 do
+    if string.sub(instructionsArray[i],1,1) == "f" then  --if the first character is F for forward
+        horPos = horPos + (string.sub(instructionsArray[i],-1))
+        depth = depth + (string.sub(instructionsArray[i],-1)*aim)
+    elseif string.sub(instructionsArray[i],1,1) == "d" then  --down
+        aim = aim + string.sub(instructionsArray[i],-1)
+    elseif string.sub(instructionsArray[i],1,1) == "u" then --up
+        aim = aim - string.sub(instructionsArray[i],-1)
+    end
+end
+
+print(horPos*depth)
