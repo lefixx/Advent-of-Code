@@ -1,3 +1,4 @@
+do
 input = [[
 101000001100
 011111100111
@@ -1000,7 +1001,7 @@ input = [[
 111110111000
 110000100111
 ]]
-
+end
 
 
 function arrayFromInput(input,inputLines)  --gets an input of one list of text and puts it in an array
@@ -1060,73 +1061,13 @@ print"1092896"
 
 -- PART 2
 
-function extractDigitFromInput(input, d) --outputs an array of single digits in position d
-    local newArray = {}
-    for i,v in ipairs(input) do
-        newArray[i] = string.sub(v,d,d)
-    end
-    return newArray
-end
-
-function findRatings(array)
-    
-    local listToKeep = {} --list with full numbers, we will remove numbers from this until it is the oxygen Rating
-    local listToKeep2 = {} ----list with full numbers, we will remove numbers from this until it is the CO2 Rating
-    for i,v in ipairs(array) do
-        listToKeep[i] = array[i]
-        listToKeep2[i] = array[i]
-    end
-
-   
-    local oxygenRating = ""
-    local CO2Rating = ""
-
-    for i = 1,12 do 
-
-        local singleBitList = extractDigitFromInput(array,i)
-        
-            
-        local mostCommonDigit = mostCommon(singleBitList)
-
-
-        if mostCommonDigit == 0 then    --yes this takes into account if they are the same (then most common digit == 2)
-            oxygenRating = oxygenRating.."0"
-            CO2Rating    = CO2Rating.."1"        
-        else
-            oxygenRating = oxygenRating.."1"
-            CO2Rating    = CO2Rating.."0"
-        end
-    
-        
-        for i,v in ipairs(singleBitList) do
-            if v+0 ~= mostCommonDigit then
-                -- table.remove(listToKeep,i)
-                listToKeep[i] = nil
-            else
-                -- table.remove(listToKeep2,i)
-                listToKeep2[i] = nil
-            end
-        end 
-        
-
-    end
-    
-    print("oxygenRating", tonumber(oxygenRating,2), oxygenRating)
-    print("CO2Rating",tonumber(CO2Rating,2), CO2Rating)
-    print(tonumber(oxygenRating,2)*tonumber(CO2Rating,2))
-    
-end
-
-
-
-
 function mostCommon(array) --input is an array of ones and zeroes returns 0,1 or 2
     local zeroes = 0
     local ones = 0
-    for i,v in ipairs(array) do
-        if v == "0" then
+    for i,v in pairs(array) do
+        if v == 0 or v == "0" then
             zeroes = zeroes + 1
-        elseif v == "1" then
+        elseif v == 1 or v == "1" then
             ones = ones + 1
         else
             print"error in mostCommon"
@@ -1138,5 +1079,94 @@ function mostCommon(array) --input is an array of ones and zeroes returns 0,1 or
     if zeroes == ones then return 2 end
 end
 
+function extractDigitFromInput(input, d) --outputs an array of single digits in position d
+    local newArray = {}
+    for i,v in pairs(input) do
+        newArray[i] = string.sub(v,d,d)
+    end
+    return newArray
+end
 
-print(findRatings(dataArray))
+function fingOxygenRating(array)
+
+    local report = clone(array)
+    local it = 1
+
+
+    while length(report) ~= 1 do
+        local bits = extractDigitFromInput(report,it)
+        local commonBit = mostCommon(bits)
+        if commonBit == 2 then commonBit = 1 end
+        
+        for k,v in pairs(bits) do
+            if v+0 ~= commonBit then
+                report[k] = nil
+            end
+        end
+
+        it=it+1
+    end
+
+    return report[427]
+end
+
+function length(table)
+    local count = 0
+    for k,v in pairs(table) do
+        count = count + 1
+    end
+    return count
+end
+
+function findCO2Rating(array)
+    local report = clone(array)
+    local it = 1
+    
+    
+
+    while length(report) ~= 1 do
+        local bits = extractDigitFromInput(report,it)
+        local commonBit = mostCommon(bits)
+        local leastCommonBit
+        
+        if commonBit == 1 then 
+            leastCommonBit = 0
+        elseif commonBit == 0 then
+            leastCommonBit = 1
+        elseif commonBit == 2 then
+            leastCommonBit = 0
+        end
+            
+
+        for k,v in pairs(bits) do 
+            if v+0 ~= leastCommonBit then 
+                report[k] = nil
+            end
+        end
+
+        it = it + 1
+        -- if it == 13 then it = 1 end
+
+    end
+
+    return report[987]
+end
+
+function clone(table)
+    local output = {}
+    for k,v in pairs(table) do 
+        output[k] = v
+    end
+    return output
+end
+
+
+
+
+
+
+
+print(fingOxygenRating(dataArray), tonumber(fingOxygenRating(dataArray),2) )
+print(findCO2Rating(dataArray), tonumber(findCO2Rating(dataArray),2) )
+-- tonumber("111100001110")
+print(3443*1357)
