@@ -6,8 +6,9 @@ function lines_from(file) ---- get all lines from a file
     return lines
 end
 
--- local foo = io.open("puzzleinput","r")
 local input = lines_from("puzzleinput")
 
-
-print(input[2])
+for k,line in pairs(input) do
+    local firstNumber = string.match(line, "%d")
+    print(line, firstNumber)
+end
