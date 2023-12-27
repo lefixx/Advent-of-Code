@@ -10,5 +10,6 @@ local input = lines_from("puzzleinput")
 
 for k,line in pairs(input) do
     local firstNumber = string.match(line, "%d")
-    print(line, firstNumber)
+    local lastNumber = string.match(string.reverse(line), "%d")
+    print(line, firstNumber, lastNumber)
 end
