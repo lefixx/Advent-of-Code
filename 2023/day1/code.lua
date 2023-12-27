@@ -8,8 +8,10 @@ end
 
 local input = lines_from("puzzleinput")
 
+local sum = 0
 for k,line in pairs(input) do
     local firstNumber = string.match(line, "%d")
     local lastNumber = string.match(string.reverse(line), "%d")
-    print(line, firstNumber, lastNumber)
+    sum = sum + (firstNumber..lastNumber)
 end
+print(sum)
