@@ -14,4 +14,24 @@ for k,line in pairs(input) do
     local lastNumber = string.match(string.reverse(line), "%d") -- reversing the string before searching returns the last digit
     sum = sum + (firstNumber..lastNumber)
 end
+
+
+for k,line in pairs(input) do
+    print(line)
+    line = string.gsub(line,"one","1")
+    line = string.gsub(line,"two","2")
+    line = string.gsub(line,"three","3")
+    line = string.gsub(line,"four","4")
+    line = string.gsub(line,"five","5")
+    line = string.gsub(line,"six","6")
+    line = string.gsub(line,"seven","7")
+    line = string.gsub(line,"eight","8")
+    line = string.gsub(line,"nine","9")
+    print(line)
+    local firstNumber = string.match(line, "%d") -- using pattern matching to get the first digit
+    local lastNumber = string.match(string.reverse(line), "%d") -- reversing the string before searching returns the last digit
+    sum = sum + (firstNumber..lastNumber)
+end
+--108239 too high
+
 print(sum)
