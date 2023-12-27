@@ -17,7 +17,16 @@ local sum = 0
 
 
 for k,line in pairs(input) do
-    print(line)
+
+    local foo = ""
+    foo = string.find(line, "one")
+    print(line, string.match(line, "(one)(two)(three)(four)(five)(six)(seven)(eight)(nine)"))
+    print(line, string.match(line, "(one)(two)"))
+
+
+
+
+
     line = string.gsub(line,"one","1")
     line = string.gsub(line,"two","2")
     line = string.gsub(line,"three","3")
@@ -29,9 +38,9 @@ for k,line in pairs(input) do
     line = string.gsub(line,"nine","9")
     local firstNumber = string.match(line, "%d") -- using pattern matching to get the first digit
     local lastNumber = string.match(string.reverse(line), "%d") -- reversing the string before searching returns the last digit
-    print(line,firstNumber, lastNumber, "\n")
+    -- print(line,firstNumber, lastNumber, "\n")
     sum = sum + (firstNumber..lastNumber)
 end
 --108239 too high
--- 53789 too low
+--53789 too low
 print(sum)

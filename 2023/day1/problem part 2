@@ -4,10 +4,10 @@ Your calculation isn't quite right. It looks like some of the digits are actuall
 
 Equipped with this new information, you now need to find the real first and last digit on each line. For example:
 
-two1nine
-eightwothree
-abcone2threexyz
-xtwone3four
+two1nine 29
+eightwothree 83
+abcone2threexyz 13
+xtwone3four 24
 4nineeightseven2
 zoneight234
 7pqrstsixteen
