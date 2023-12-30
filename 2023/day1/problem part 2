@@ -4,13 +4,13 @@ Your calculation isn't quite right. It looks like some of the digits are actuall
 
 Equipped with this new information, you now need to find the real first and last digit on each line. For example:
 
-two1nine 29
-eightwothree 83
-abcone2threexyz 13
-xtwone3four 24
-4nineeightseven2
-zoneight234
-7pqrstsixteen
+two1nine 29 - two 1 nine - 219
+eightwothree 83 - eight two three - 823
+abcone2threexyz 13 - one 2 three - 123
+xtwone3four 24 - two one 3 four - 2134
+4nineeightseven2 - 4 nine eight sever 2 - 49872
+zoneight234 - one eight 2 3 4 - 18234
+7pqrstsixteen - 7 six - 76
 
 In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
 
