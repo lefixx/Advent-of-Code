@@ -29,10 +29,65 @@ reversePatterns = {}
 for k,v in ipairs(allPatterns) do
     reversePatterns[k] = string.reverse(v)
 end
+solution = {}
 
 
+for k,line in pairs(input) do
+    for j,word in pairs(allPatterns) do
+        for i = 1,string.len(line) do
+            -- print("looking at ",line,"for: ", word, "at :",i)
+            if string.find(line, word) then
+                if string.find(line, word) == i then
+                    if word == "one" then word = 1 end
+                    if word == "two" then word = 2 end
+                    if word == "three" then word = 3 end
+                    if word == "four" then word = 4 end
+                    if word == "five" then word = 5 end
+                    if word == "six" then word = 6 end
+                    if word == "seven" then word = 7 end
+                    if word == "eight" then word = 8 end
+                    if word == "nine" then word = 9 end
+                    table.insert(solution,{line,word})
+                end
+            end
+            break -- stops looking after finding the first match
+        end
+    end
+end
 
+
+for k,line in pairs(input) do
+    for j,word in pairs(allPatterns) do
+        line = string.reverse(line)
+        word = string.reverse(word)
+        for i = 1,string.len(line) do
+            -- print("looking at ",line,"for: ", word, "at :",i)
+            if string.find(line, word) then
+                if string.find(line, word) == i then
+                    -- print(line, word,i)
+                    if word == "eno" then word = 1 end
+                    if word == "owt" then word = 2 end
+                    if word == "eerht" then word = 3 end
+                    if word == "ruof" then word = 4 end
+                    if word == "evif" then word = 5 end
+                    if word == "xis" then word = 6 end
+                    if word == "neves" then word =7  end
+                    if word == "thgie" then word = 8 end
+                    if word == "enin" then word = 9 end
+                    print(line,word)
+                    print(solution[k][1])
+                    print(solution[k][2])
+                    solution[k][3] = word
+                end
+            end
+            break -- stops looking after finding the first match
+        end
+    end
+end
 
 --108239 too high
 --53789 too low
-print(sum)
+-- for k,v in pairs(solution) do
+--     printTable(v)
+-- end
+-- print(sum)
