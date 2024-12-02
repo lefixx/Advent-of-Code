@@ -12,7 +12,7 @@ table.sort(left)
 table.sort(right)
 
 local total = 0
-for i,v in ipairs(right) do
+for i =1, #left do
     local dif = left[i]-right[i]   
     total = total + math.abs(dif)   --math.abs() returns absolute value
 end
