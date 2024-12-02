@@ -1,13 +1,10 @@
 left = {}
 right = {}
 
-i=0
 for line in io.lines("2024\\day 01\\puzzle") do   --for every line in the puzzle file
-    i=i+1                                         --how else do you know what loop you are in?
-    table.insert(left,i,tonumber(string.sub(line,1,5)))     --make a table with left numbers
-    table.insert(right,i,tonumber(string.sub(line,7,13)))   --make a table with right numbers
+    table.insert(left,tonumber(string.sub(line,1,5)))     --make a table with left numbers
+    table.insert(right,tonumber(string.sub(line,7,13)))   --make a table with right numbers
 end
-
 table.sort(left)
 table.sort(right)
 
